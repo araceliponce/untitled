@@ -1,8 +1,10 @@
 import {
-  spinDiceOnClick
+  spinDiceOnClick,
+  makeItemsSortable
 } from './partials/dice.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  spinDiceOnClick()
+  spinDiceOnClick();
+  makeItemsSortable();
 })
