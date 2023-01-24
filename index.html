@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>untitled</title>
-
+  <title>Untitled.</title>
 
   <!-- sortableJS-->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
@@ -15,144 +14,159 @@
   <script src="scripts/index.js" type="module"></script>
 </head>
 
-<body>
+<style>
+  .main {
+    display: grid;
+    align-content: space-between;
+    min-height: 80vh;
+    /* 100% de body es muy alto */
+  }
+</style>
 
-  <main>
-    <div class="container">
-      <input type="text" id="searchInput" class="search">
+<body class="relative">
+  <main class="main  ">
+
+    <div class="relative">
+      <!-- container relative para alarmContainer-->
+      <div class="container">
+        <!-- relative para span -->
+        <label for="searchInput" class="title hidden">Busca y usa las flechas de arriba y abajo de tu teclado para elegir ayudantes</label>
+        <div id="wholeInput" class="flex">
+          <input autofocus type="text" id="searchInput" list="helpersList" class="underlined" autocomplete="off">
+        </div>
+
+      </div>
+      <!-- some browsers cannot handle input type time -->
+      <section id="alarmContainer" class="hidden container  absolute-top left-right rounded outlined">
+        <p>Establecer alarma a las:</p>
+        <div class="">
+          <div>
+            <input type="number" id="alarmHours" placeholder="" class="time" autocomplete="off" min="0" max="24">
+            <label for="alarmHours">HORAS</label>
+          </div>
+
+          <div>
+            <input type="number" id="alarmMinutes" placeholder="" class="time" autocomplete="off" min="00" max="60">
+            <label for="alarmMinutes">MINUTOS</label>
+          </div>
+        </div>
+        <div class="grid-2">
+          <button id="alarmSetBtn" class="btn">LISTO</button>
+          <button id="alarmStopBtn" class="hidden btn">CANCELAR</button>
+        </div>
+        <p id="alarmMsg"></p>
+      </section>
     </div>
 
-
-    <ul id="bookmarksUl" class="container bookmarks">
-      <li class="">
-        <div class="liInner">
-
-
-          <button id="diceContainer" class="panel">
-            <div id="dice" class="dice">
-              <div class="side one">
-                <span class="dot"></span>
-              </div>
-              <div class="side two">
-                <div class="side-inner">
-                  <span class="dot"></span>
+    <div class="container">
+      <ul id="bookmarksUl" class="bookmarks flex">
+        <li class="">
+          <div class="liInner">
+            <button id="diceContainer" class="panel">
+              <div id="dice" class="dice">
+                <div class="side one outlined">
                   <span class="dot"></span>
                 </div>
-              </div>
-              <div class="side three">
-                <div class="side-inner">
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                </div>
-              </div>
-              <div class="side four">
-                <div class="side-inner">
-                  <div class="inner-col">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                  </div>
-                  <div class="inner-col">
+                <div class="side two outlined">
+                  <div class="side-inner">
                     <span class="dot"></span>
                     <span class="dot"></span>
                   </div>
                 </div>
-              </div>
-              <div class="side five">
-                <div class="side-inner">
-                  <div class="inner-col">
+                <div class="side three outlined">
+                  <div class="side-inner">
                     <span class="dot"></span>
-                    <span class="dot"></span>
-                  </div>
-                  <div class="inner-col">
-                    <span class="dot"></span>
-                  </div>
-                  <div class="inner-col">
                     <span class="dot"></span>
                     <span class="dot"></span>
                   </div>
                 </div>
-              </div>
-              <div class="side six">
-                <div class="side-inner">
-                  <div class="inner-col">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                <div class="side four outlined">
+                  <div class="side-inner">
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
                   </div>
-                  <div class="inner-col">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                </div>
+                <div class="side five outlined">
+                  <div class="side-inner">
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                    </div>
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
                   </div>
-                  <div class="inner-col">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                </div>
+                <div class="side six outlined">
+                  <div class="side-inner">
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                    <div class="inner-col">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </button>
-        </div>
-      </li>
-      <li class="pinned">
-        <a class="liInner" href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">
-          <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <title>Gmail</title>
-            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a class="liInner" href="https://drive.google.com/" target="_blank" rel="noopener noreferrer">
-          <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <title>Google Drive</title>
-            <path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z" />
-          </svg>
-        </a>
-      </li>
+            </button>
+          </div>
+        </li>
+        <li>
+          <button class="liInner" aria-expanded="false" aria-controls="alarmContainer">
+            <svg class="stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title>Establecer alarma</title>
+              <circle cx="12" cy="13" r="8"></circle>
+              <path d="M12 9v4l2 2"></path>
+              <path d="M5 3 2 6"></path>
+              <path d="m22 6-3-3"></path>
+              <path d="m6 19-2 2"></path>
+              <path d="m18 19 2 2"></path>
+            </svg></button>
+        </li>
+        <li class="">
+          <a class="liInner" href="https://mail.google.com/mail/" target="_blank" rel="noopener noreferrer">
+            <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <title>Gmail</title>
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="liInner" href="https://drive.google.com/" target="_blank" rel="noopener noreferrer">
+            <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <title>Google Drive</title>
+              <path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z" />
+            </svg>
+          </a>
+        </li>
 
-      <li>
-        <a class="liInner" href="https://docs.google.com/spreadsheets/" target="_blank" rel="noopener noreferrer">
-          <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <title>Google Sheets</title>
-            <path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <button class="liInner">
-          <svg class="stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <title>Establecer alarma</title>
-            <circle cx="12" cy="13" r="8"></circle>
-            <path d="M12 9v4l2 2"></path>
-            <path d="M5 3 2 6"></path>
-            <path d="m22 6-3-3"></path>
-            <path d="m6 19-2 2"></path>
-            <path d="m18 19 2 2"></path>
-          </svg></button>
-      </li>
-      <li>
-        <button class="liInner">
-          <svg class="stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <title>Adda note see all notes</title>
-            <path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"></path>
-            <path d="M15 3v6h6"></path>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button class="liInner">
-          <svg class="stroke" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <title>cerrar</title>
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="9" y1="9" x2="15" y2="15"></line>
-            <line x1="15" y1="9" x2="9" y2="15"></line>
-          </svg>
-        </button>
-      </li>
-
-    </ul>
+        <li>
+          <a class="liInner" href="https://docs.google.com/spreadsheets/" target="_blank" rel="noopener noreferrer">
+            <svg class="fill" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <title>Google Sheets</title>
+              <path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
   </main>
-
 </body>
 
 </html>
